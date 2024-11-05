@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MersenneTwistertest", "MersenneTwistertest.csproj", "{7E95C4EE-ECF3-4CAD-9D48-E6A8BECFB355}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E95C4EE-ECF3-4CAD-9D48-E6A8BECFB355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E95C4EE-ECF3-4CAD-9D48-E6A8BECFB355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E95C4EE-ECF3-4CAD-9D48-E6A8BECFB355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E95C4EE-ECF3-4CAD-9D48-E6A8BECFB355}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DEBE60B-FEC3-4659-A5BF-E6567CEFCC2C}
+	EndGlobalSection
+EndGlobal
