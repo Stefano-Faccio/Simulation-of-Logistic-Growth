@@ -18,19 +18,26 @@ function phasePlot(k,C,N_0,t,xlimit)
     
     figure;
     hold on;
-    plot(N_t, firstDerivativeN_t, '-', Color ='#5A5A5A', LineWidth=1.25);
+    p_der = plot(N_t, firstDerivativeN_t, '-', Color = "#FD151B", LineWidth=4);
     xlabel("N (population)");
     % relevant x values (about N)
-    xline(L/2, "m-", "L/2",'LabelOrientation', 'horizontal',LineWidth=1.5)
-    xline(L, "r--", "L", 'LabelOrientation', 'horizontal',LineWidth=1.5)
-    xline(N_0, "g-", "N_0",'LabelOrientation', 'horizontal',LineWidth=1.5)
-    xline(0, "b--",'LabelOrientation', 'horizontal',LineWidth=1.5)
+    p_middle = xline(L/2, "m-", {"", "N*=L/2"},'LabelOrientation', 'horizontal',LineWidth=2.5);
+    p_stop = xline(L, "k--", {"", "N=L"}, 'LabelOrientation', 'horizontal',LineWidth=1.5);
+    p2start = xline(N_0, "-", {"", "","N_0"},'LabelOrientation', 'horizontal',LineWidth=2.5, Color="#00ff00", LabelVerticalAlignment="middle");
+    %xline(0, "b--",'LabelOrientation', 'horizontal',LineWidth=1.5)
     maxN_t = max(N_t);
-    xline(maxN_t, "-", "N_{max}", 'LabelOrientation', 'aligned',LineWidth=1.5, Color="#EDB120")
-    ylabel(" dN/dt (N_t') ");
+    p2stop= xline(maxN_t, "-", {"", "","N_{max}"}, 'LabelOrientation', 'horizontal',LineWidth=2.5, Color="#ffc61a", LabelHorizontalAlignment="left", LabelVerticalAlignment="middle");
+    ylabel(" dN/dt(N_t') ");
+
+    ax = gca;
+    fontsize(ax, scale=2.0);
+    leg = legend([p_der, p2start, p2stop, p_middle], "First Derivative", "N_0", "N_{max}", "N*=L/2", Location="northwest");
+    title(leg, 'Growth rate curve');
+
     title("Logistic growth phase plot");
     subtitle_ = "N_0: " + N_0 + "; N_{max}: " + round(maxN_t,2)+"; c: " + C + "; k: " + k + "; L: " + L+"; L/2: " + L/2 + ";"; 
     subtitle(subtitle_);
+
     axis tight;
     xlim([0 xlimit])
     box on;

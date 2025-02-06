@@ -34,31 +34,34 @@ function plotLogSForCurve(tmax,Nmax,Nmin,k,C,N_0,string)
 
     figure;
     hold on;
+
     if string=="curve"
         % switch off the grid
         % quiver(t,N,dt,dN, Color = "#FFFFFF");
-        p1 = plot(ti, N_tl, "k",LineWidth=1.5);
-        p2 = plot(ti, N_te, LineWidth=1.5, Color="#8C92AC");
+        p_log = plot(ti, N_tl, LineWidth=4, Color="#FD151B");
+        p_exp = plot(ti, N_te, LineWidth=3, Color="k");
         
     elseif string=="sf"
         % make grid visible
-        quiver(t,N,dt,dN, Color = "#A2A2D0");
-        plot(u,y, LineWidth=1.5, Color="k");
+        quiver(t,N,dt,dN, Color=CT(1,:));
+        plot(u,y, LineWidth=myWidth, Color="k");
     end
     
     % plot relevant y values 
-    yline(L, "r--","N=L", LineWidth=1.5);
-    yline(N_0, "g-","N_0", LineWidth=1.5);
-    yline(0, "b--","N=0", LineWidth=1.5);
+    pstart = yline(0, "--","N=0     ", LineWidth=1.5, Color="k", LabelVerticalAlignment="bottom");
+    pstop = yline(L, "--","N=L     ", LineWidth=1.5, Color="k");
+    p2start = yline(N_0, "-","N_0                                                  ", LineWidth=2.5, Color="#00ff00");
+    
     
     if string=="curve"
         % additional information
         maxN_t = max(y);
-        yline(maxN_t, "-", "N_{max}",LineWidth=1.5, Color="#EDB120");
-        yline(L/2, "m-", "N=L/2",'LabelOrientation', 'horizontal', LineWidth=1.5)
         coeff =(L/N_0)-1;
         inflection_t = (-1/k)*log(1/coeff);
-        xline(inflection_t,"c-", "t^*", 'LabelOrientation', 'horizontal', LineWidth=1.5)
+
+        p2stop = yline(maxN_t, "-", "N_{max}                                                  ",LineWidth=2.5, Color="#ffc61a", LabelVerticalAlignment="bottom");
+        p_middle = yline(L/2, "-", "N*=L/2                    ",'LabelOrientation', 'horizontal', LineWidth=2.5, Color="#ff00ff");
+        p_vertical = xline(inflection_t,"-", {"", "", "", "", "", "","t^*"}, 'LabelOrientation', 'horizontal', LineWidth=2.5, Color="#3366ff", LabelHorizontalAlignment="left", LabelVerticalAlignment="middle");
     end
     
     ylabel("N (population) - units");
@@ -82,10 +85,11 @@ function plotLogSForCurve(tmax,Nmax,Nmin,k,C,N_0,string)
     ylim([Nmin Nmax]);
     ax = gca;
     ax.TitleHorizontalAlignment="center";
+   
 
     if string=="sf"
     elseif string=="curve"
-        leg= legend([p1 p2], "Logistic", "Exponential",Location="southwest");
+        leg = legend([p_log p_exp p2start p2stop p_middle p_vertical], "Logistic", "Exponential", "N_0", "N_{max}", "N=L/2", "t^*", Location="northwest");
         title(leg, 'Growth curve');
     end
 
