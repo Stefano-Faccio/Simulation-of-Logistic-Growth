@@ -32,13 +32,14 @@ function compareGillespieResiduals(ITERATIONS,ITERATIONS_TO_SHOW,Gillespie_Model
     nexttile(1)
     hold on;
     box on;
+    ax= gca;
     plot(Gillespie_Model_Times-1,Gillespie_Model_Values, ".", Color="#EC3B83");
     plot(Gillespie_Model_Times-1,gillespie_continuous_population, Color="#29AB87", LineWidth=2);
-    xlabel("time");
+    xlabel("t (time) - units");
     ylabel("\mu(N_i)");
     title(["1) Big picture of the CM fitting of the"," experimental Gillepsie \mu(N_i) values"]);
+    legend("Gillespie Simulation", "N_i values of CM", Location="southeast");
     %title("1)", FontSize=15);
-    ax= gca;
     fontsize(ax, "scale", 1.25);
     axis tight;
     hold off;
