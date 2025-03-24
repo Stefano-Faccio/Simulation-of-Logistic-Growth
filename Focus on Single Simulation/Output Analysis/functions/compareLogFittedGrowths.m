@@ -54,4 +54,15 @@ legend("Raw residuals", Location="southeast");
 box on;
 hold off;
 
+figure;
+hold on;
+plot(TIME,100 * abs(discrete_model_real-continuous_population) ./ continuous_population, ".", LineWidth=1.5, Color="#0040ff");
+leg = legend("Absolute Percentage Error");
+ylabel("Error (%)");
+xlabel("t (time) - units");
+ax = gca;
+fontsize(ax, scale=2.1);
+box on;
+hold off;
+
 end
